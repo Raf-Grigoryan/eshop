@@ -12,5 +12,4 @@ public interface Commands {
     String PRINT_PRODUCT_WITH_MAX_PRICE = "8";
     String AVERAGE_PRICE = "9";
     String PRINT_ALL_PRODUCTS = "10";
-
 }

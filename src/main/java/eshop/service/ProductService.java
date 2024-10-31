@@ -21,4 +21,5 @@ public interface ProductService {
     int productCount();
 
     int averagePrice();
+    void updateProduct (Product product);
 }

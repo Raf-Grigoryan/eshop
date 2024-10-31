@@ -170,7 +170,6 @@ public class EshopDemo implements Commands {
                         printAllCategories();
                         System.out.println("Please input new category id:");
                         String categoryId = scanner.nextLine();
-
                         if (!categoryId.isEmpty()) {
                             Category category = categoryService.findById(Integer.parseInt(categoryId));
                             if (category != null) {

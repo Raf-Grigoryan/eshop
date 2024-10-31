@@ -61,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(int id) {
-        try{
+        try {
             String sql = "SELECT * FROM product  WHERE id = " + id;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
                 product.setQuantity(resultSet.getInt("quantity"));
                 Category category = new Category();
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -172,5 +172,27 @@ public class ProductServiceImpl implements ProductService {
             System.out.println(e.getMessage());
         }
         return 0;
+    }
+
+    public void updateProduct(Product product) {
+        String sql = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, product.getName());
+            stmt.setString(2, product.getDescription());
+            stmt.setDouble(3, product.getPrice());
+            stmt.setInt(4, product.getQuantity());
+            stmt.setInt(5, product.getCategory().getId()); // Предполагаем, что Category имеет метод getId()
+            stmt.setInt(6, product.getId());
+
+            int rowsUpdated = stmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Product updated successfully.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("An error occurred while updating the product.");
+        }
     }
 }

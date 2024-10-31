@@ -62,11 +62,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void removeCategoryById(int id) {
-        try{
+        try {
             String sql = "DELETE FROM category WHERE id = " + id;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
