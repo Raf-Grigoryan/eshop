@@ -192,9 +192,8 @@ public class ProductServiceImpl implements ProductService {
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setInt(4, product.getQuantity());
-            stmt.setInt(5, product.getCategory().getId()); // Предполагаем, что Category имеет метод getId()
+            stmt.setInt(5, product.getCategory().getId());
             stmt.setInt(6, product.getId());
-
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Product updated successfully.");
