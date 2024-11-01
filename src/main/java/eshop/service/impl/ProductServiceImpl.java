@@ -184,7 +184,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public void updateProduct(Product product) {
-        String sql = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
+        String sql = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ?, category_id = ? WHERE id = " + product.getId();
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
