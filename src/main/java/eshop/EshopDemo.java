@@ -198,7 +198,7 @@ public class EshopDemo implements Commands {
                         product.setDescription(newDescription);
                         product.setPrice(newPrice);
                         product.setQuantity(newQuantity);
-
+                        productService.updateProduct(product);
                         System.out.println("Product updated successfully.");
                     } else {
                         System.out.println("Invalid input format. Please input exactly 4 values.");
