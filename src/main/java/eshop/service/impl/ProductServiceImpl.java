@@ -62,8 +62,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(int id) {
         try {
-            String sql = "SELECT * FROM product  WHERE id = " + id;
+            String sql = "SELECT p.id, p.name, p.description, p.price, p.quantity, c.id AS category_id, c.name AS category_name " +
+                    "FROM product AS p " +
+                    "JOIN category AS c ON p.category_id = c.id " +
+                    "WHERE p.id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Product product = new Product();
@@ -73,6 +77,11 @@ public class ProductServiceImpl implements ProductService {
                 product.setPrice(resultSet.getDouble("price"));
                 product.setQuantity(resultSet.getInt("quantity"));
                 Category category = new Category();
+                category.setId(resultSet.getInt("category_id"));
+                category.setName(resultSet.getString("category_name"));
+                product.setCategory(category);
+                return product;
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

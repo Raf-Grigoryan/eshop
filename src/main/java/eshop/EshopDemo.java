@@ -157,11 +157,10 @@ public class EshopDemo implements Commands {
     private static void editProductById() {
         try {
             System.out.println("Please input product id:");
+            printAllProducts();
             String productId = scanner.nextLine();
-
             if (!productId.isEmpty()) {
                 Product product = productService.getProductById(Integer.parseInt(productId));
-
                 if (product != null) {
                     System.out.println("Update category? (yes or no)");
                     String command = scanner.nextLine();
