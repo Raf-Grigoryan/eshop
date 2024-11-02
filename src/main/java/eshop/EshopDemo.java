@@ -165,7 +165,7 @@ public class EshopDemo implements Commands {
                     System.out.println("Update category? (yes or no)");
                     String command = scanner.nextLine();
 
-                    if (command.equalsIgnoreCase("yes")) { // Игнорируем регистр
+                    if (command.equalsIgnoreCase("yes")) {
                         printAllCategories();
                         System.out.println("Please input new category id:");
                         String categoryId = scanner.nextLine();
